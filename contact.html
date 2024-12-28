@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMANSH - Contact</title>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous"
+  />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="container nav-container">
+        <div class="logo header-font"><a href="index.html">IMANSH</a></div>
+        <!-- Mobile nav icon -->
+        <div class="mobile-icon" onclick="toggleMenu()">
+          <i class="fa fa-bars"></i>
+        </div>
+
+        <nav class="nav-links">
+          <ul id="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li class="link-active"><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-icons">
+          <a href="cart.html">
+            <span id="number-cart">3</span>
+            <i class="fa-solid fa-bag-shopping"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+      <section class="section contact-section">
+        <div class="container">
+          <h2 class="section-title">Contact IMANSH Perfumes</h2>
+          <p>
+            We’d love to hear from you! Whether you have questions about our products, 
+            need help finding your perfect fragrance, or simply want to share your feedback, 
+            our team is here for you.
+          </p>
+          <br/>
+
+          <!-- Contact Form -->
+          <form id="contactForm" style="max-width: 600px; margin: 0 auto;">
+            <!-- Full Name (split into First/Last) -->
+            <div style="display: flex; gap: 1rem;">
+              <div style="flex: 1;">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name"/>
+                <p id="firstNameError" class="error-message"></p>
+              </div>
+              <div style="flex: 1;">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name"/>
+                <p id="lastNameError" class="error-message"></p>
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div style="margin-top: 1rem;">
+              <label for="email">Email:</label>
+              <input type="text" id="email" name="email" placeholder="example@email.com"/>
+              <p id="emailError" class="error-message"></p>
+            </div>
+
+            <!-- Mobile -->
+            <div style="margin-top: 1rem;">
+              <label for="mobile">Mobile:</label>
+              <input type="tel" id="mobile" name="mobile" placeholder="+1 (555) 123-4567"/>
+              <p id="mobileError" class="error-message"></p>
+            </div>
+
+            <!-- Address -->
+            <div style="margin-top: 1rem;">
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" placeholder="Address" />
+              <p id="addressError" class="error-message"></p>
+            </div>
+
+            <!-- Country -->
+            <div style="margin-top: 1rem;">
+              <label for="country">Country:</label>
+              <input type="text" id="country" name="country" placeholder="Country"/>
+              <p id="countryError" class="error-message"></p>
+            </div>
+
+            <!-- Message -->
+            <div style="margin-top: 1rem;">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="4"></textarea>
+              <p id="messageError" class="error-message"></p>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="margin-top: 1rem; text-align: center;">
+              <button type="submit" class="slide">Send Message</button>
+            </div>
+
+            <!-- Status/Confirmation Message -->
+            <p id="formStatus"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-col">
+          <h3>IMANSH Perfumes</h3>
+          <p>Indulge in captivating scents that elevate every moment.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <p>Contact via email at <strong>support@imanshperfumes.com</strong></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 IMANSH Perfumes. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  <!-- End .wrapper -->
+
+  <script>
+    // OPTIONAL: This function toggles the mobile menu (for smaller screens).
+    function toggleMenu() {
+      const navList = document.getElementById('nav-list');
+      navList.classList.toggle('show');
+    }
+
+    // --- Validation Helper Functions ---
+    function isValidEmail(email) {
+      // Simple demonstration pattern
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    }
+
+    function isValidPhone(phone) {
+      // Basic pattern that allows optional +, then digits (7 to 15 total digits)
+      return /^\+?\d{7,15}$/.test(phone.trim());
+    }
+
+    // --- Real-Time Validation Functions ---
+    function validateFirstName() {
+      const firstName = $('#firstName').val().trim();
+      if (!firstName) {
+        $('#firstNameError').text("First Name is required.");
+      } else {
+        $('#firstNameError').text("");
+      }
+    }
+
+    function validateLastName() {
+      const lastName = $('#lastName').val().trim();
+      if (!lastName) {
+        $('#lastNameError').text("Last Name is required.");
+      } else {
+        $('#lastNameError').text("");
+      }
+    }
+
+    function validateEmail() {
+      const email = $('#email').val().trim();
+      if (!email) {
+        $('#emailError').text("Email is required.");
+      } else if (!isValidEmail(email)) {
+        $('#emailError').text("Please enter a valid email address.");
+      } else {
+        $('#emailError').text("");
+      }
+    }
+
+    function validateMobile() {
+      const mobile = $('#mobile').val().trim();
+      if (!mobile) {
+        $('#mobileError').text("Mobile number is required.");
+      } else if (!isValidPhone(mobile)) {
+        $('#mobileError').text("Please enter a valid phone number (e.g., +15551234567).");
+      } else {
+        $('#mobileError').text("");
+      }
+    }
+
+    function validateAddress() {
+      const address = $('#address').val().trim();
+      if (!address) {
+        $('#addressError').text("Address is required.");
+      } else {
+        $('#addressError').text("");
+      }
+    }
+
+    function validateCountry() {
+      const country = $('#country').val().trim();
+      if (!country) {
+        $('#countryError').text("Country is required.");
+      } else {
+        $('#countryError').text("");
+      }
+    }
+
+    function validateMessage() {
+      const message = $('#message').val().trim();
+      if (!message) {
+        $('#messageError').text("Message is required.");
+      } else {
+        $('#messageError').text("");
+      }
+    }
+
+    // When the page is loaded...
+    $(document).ready(function() {
+
+      // Attach real-time validation to each field (on input)
+      $('#firstName').on('input', validateFirstName);
+      $('#lastName').on('input', validateLastName);
+      $('#email').on('input', validateEmail);
+      $('#mobile').on('input', validateMobile);
+      $('#address').on('input', validateAddress);
+      $('#country').on('input', validateCountry);
+      $('#message').on('input', validateMessage);
+
+      // Final check on form submit
+      $('#contactForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent normal form submission
+
+        // Clear any previous success message
+        $('#formStatus').text('').css('color', '');
+
+        // Run all validations
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validateMobile();
+        validateAddress();
+        validateCountry();
+        validateMessage();
+
+        // Check if any error messages are present
+        let anyErrors = false;
+        $('.error-message').each(function(){
+          if ($(this).text() !== '') {
+            anyErrors = true;
+            return false; // break out of .each loop
+          }
+        });
+
+        if (!anyErrors) {
+          // If no errors, show success message in green
+          $('#formStatus').css('color', 'green').text("Form submitted successfully!");
+          
+          // Reset the form fields
+          $('#contactForm')[0].reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
